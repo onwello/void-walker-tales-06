@@ -1,73 +1,55 @@
-# Welcome to your Lovable project
+# Void Walker Tales
 
-## Project info
+Built with Vite, React, TypeScript, Tailwind CSS, and shadcn/ui.
 
-**URL**: https://lovable.dev/projects/55808de0-270f-4eb2-a92b-4640e74c5991
-
-## How can I edit this code?
-
-There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/55808de0-270f-4eb2-a92b-4640e74c5991) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+## Develop
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+npm install
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+## Build
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```sh
+npm run build
+```
 
-**Use GitHub Codespaces**
+Output is in `dist/`.
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Deploy to Cloudflare (Workers + static assets)
 
-## What technologies are used for this project?
+### Option A: Wrangler CLI
 
-This project is built with:
+1. Install Wrangler (if needed): `npm install -g wrangler`
+2. Log in: `npx wrangler login`
+3. Deploy:
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+```sh
+npm run deploy
+```
 
-## How can I deploy this project?
+Or manually: `npm run build && npx wrangler deploy`
 
-Simply open [Lovable](https://lovable.dev/projects/55808de0-270f-4eb2-a92b-4640e74c5991) and click on Share -> Publish.
+### Option B: Cloudflare dashboard (Git integration)
 
-## Can I connect a custom domain to my Lovable project?
+1. In [Cloudflare Dashboard](https://dash.cloudflare.com) go to **Workers & Pages** → **Create** → **Pages** (or **Workers**) → **Connect to Git**.
+2. Select this repo.
+3. Set **Build output directory**: `dist`.
+4. **Use npm (required)** if the build fails with “lockfile had changes, but lockfile is frozen”:
+   - **Build command**: `npm ci && npm run build`
+   - **Settings** → **Environment variables** (Production and Preview): add **Variable** `SKIP_DEPENDENCY_INSTALL`, **Value** `1`.
+5. Set **Deploy command** (if applicable): `npx wrangler deploy`
+6. Save and deploy.
 
-Yes, you can!
+SPA client-side routing is handled by `wrangler.toml` via `not_found_handling = "single-page-application"`.
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## Scripts
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+| Script           | Description                          |
+| ---------------- | ------------------------------------ |
+| `npm run dev`    | Start dev server (port 8080)         |
+| `npm run build`  | Production build → `dist`            |
+| `npm run preview`| Preview production build            |
+| `npm run deploy` | Build + deploy to Cloudflare Workers |
+| `npm run lint`   | Run ESLint                           |

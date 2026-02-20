@@ -1,0 +1,10 @@
+# Cloudflare Workers (static assets)
+# Deploy: npm run deploy  (or: npm run build && npx wrangler deploy)
+# Or in Cloudflare dashboard: connect repo, Build = npm ci && npm run build, Output = dist, Deploy = npx wrangler deploy
+
+name = "void-walker-tales-06"
+compatibility_date = "2025-02-01"
+
+[assets]
+directory = "./dist"
+not_found_handling = "single-page-application"
