@@ -1,6 +1,6 @@
-# Void Walker Tales
+# Logistics OS
 
-Built with Vite, React, TypeScript, Tailwind CSS, and shadcn/ui.
+Marketing and early-access landing page for Logistics OS, built with Vite, React, TypeScript, Tailwind CSS, and shadcn/ui.
 
 ## Develop
 
