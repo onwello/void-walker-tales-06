@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Play, ArrowDown } from "lucide-react";
+import NetworkBackground from "@/components/NetworkBackground";
 
 const Hero = () => {
   const scrollToFooter = () => {
@@ -9,8 +10,9 @@ const Hero = () => {
   };
 
   return (
-    <section className="py-24 px-4">
-      <div className="container mx-auto text-center">
+    <section className="relative py-24 px-4 overflow-hidden bg-background">
+      <NetworkBackground />
+      <div className="container mx-auto text-center relative">
         <Badge className="mb-6 bg-primary/10 text-primary hover:bg-primary/10 border-0 font-medium px-4 py-1.5">
           The Next Generation Logistics Engine
         </Badge>
