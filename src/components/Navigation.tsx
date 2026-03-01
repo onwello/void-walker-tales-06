@@ -9,13 +9,6 @@ const Navigation = () => {
           <Link to="/" className="flex items-center">
             <span className="text-xl font-bold tracking-tight text-foreground">Logistics OS</span>
           </Link>
-
-          <a
-            href="mailto:hello@domain.com"
-            className="text-muted-foreground hover:text-foreground transition-colors text-sm font-medium"
-          >
-            Contact
-          </a>
         </div>
       </div>
     </nav>
